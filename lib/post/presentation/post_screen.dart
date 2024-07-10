@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:formation_flutter_join24/post/data/repositories/post_repository.dart';
+import 'package:formation_flutter_join24/post/presentation/comment_screen.dart';
 
 import '../data/models/post_model.dart';
 
@@ -55,6 +56,55 @@ class _PostScreenState extends State<PostScreen> {
                 itemBuilder: (context, index) {
                   var post = posts[index];
                   return ListTile(
+                    onTap: () {
+                      // Navigator.of(context).push(
+                      //   MaterialPageRoute(
+                      //     builder: (context) => CommentScreen(post: post),
+                      //   ),
+                      // );
+                      showModalBottomSheet(
+                        context: context,
+                        elevation: 1,
+                        isScrollControlled: true,
+                        barrierColor: Colors.black.withOpacity(.8),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        builder: (context) {
+                          return Container(
+                            height: MediaQuery.of(context).size.height * .8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 8,
+                                  ),
+                                  child: Center(
+                                    child: Container(
+                                      width: 100,
+                                      height: 8,
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: CommentScreen(
+                                    post: post,
+                                    showAppBar: false,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
                     title: Text(post.title),
                     subtitle: Text(post.body),
                   );
