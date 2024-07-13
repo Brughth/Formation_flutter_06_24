@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:formation_flutter_join24/form/form_screen.dart';
 import 'package:formation_flutter_join24/genderize/presentation/genderize_screen.dart';
 import 'package:formation_flutter_join24/post/presentation/post_screen.dart';
 
@@ -118,6 +119,17 @@ class TrainingScreen extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const GenderizeScreen(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("Form "),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const FormScreen(),
                   ),
                 );
               },
