@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:formation_flutter_join24/training_screen.dart';
+import 'package:formation_flutter_join24/shared/pages/training_screen.dart';
 
 class ApplicationScreen extends StatefulWidget {
   const ApplicationScreen({super.key});

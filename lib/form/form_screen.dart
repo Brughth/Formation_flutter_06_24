@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:formation_flutter_join24/app_input.dart';
+import 'package:formation_flutter_join24/shared/widgets/app_input.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({super.key});
@@ -44,24 +44,34 @@ class _FormScreenState extends State<FormScreen> {
         ),
         child: ListView(
           children: [
-            AppInput(
-              controller: firstNameController,
-              label: "First Name",
-              hint: "First Name",
-              focusNode: firstNameNode,
-              nextNode: lastNameNode,
-              keyboardType: TextInputType.name,
+            Row(
+              children: [
+                Expanded(
+                  child: AppInput(
+                    controller: firstNameController,
+                    label: "First Name",
+                    hint: "First Name",
+                    focusNode: firstNameNode,
+                    nextNode: lastNameNode,
+                    keyboardType: TextInputType.name,
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: AppInput(
+                    controller: lastNameController,
+                    label: "Last Name",
+                    hint: "Last Name",
+                    focusNode: lastNameNode,
+                    textInputAction: TextInputAction.done,
+                    nextNode: emailNode,
+                    keyboardType: TextInputType.name,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
-            AppInput(
-              controller: lastNameController,
-              label: "Last Name",
-              hint: "Last Name",
-              focusNode: lastNameNode,
-              textInputAction: TextInputAction.done,
-              nextNode: emailNode,
-              keyboardType: TextInputType.name,
-            ),
+
             const SizedBox(height: 20),
             AppInput(
               controller: emailController,

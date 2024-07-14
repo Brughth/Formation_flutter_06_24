@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:formation_flutter_join24/stl.dart';
+import 'package:formation_flutter_join24/shared/pages/stl.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

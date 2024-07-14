@@ -3,6 +3,7 @@ import 'package:formation_flutter_join24/form/form_screen.dart';
 import 'package:formation_flutter_join24/genderize/presentation/genderize_screen.dart';
 import 'package:formation_flutter_join24/post/presentation/post_screen.dart';
 
+import '../../bmi/presentation/bmi_screen.dart';
 import 'counter_screen.dart';
 import 'gridview_builder_screen.dart';
 import 'gridview_screen.dart';
@@ -130,6 +131,17 @@ class TrainingScreen extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const FormScreen(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("BMI Calculator"),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const BMIScreen(),
                   ),
                 );
               },
