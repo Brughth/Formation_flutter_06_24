@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formation_flutter_join24/counter/logic/bloc/counter1_bloc.dart';
 import 'package:formation_flutter_join24/genderize/data/genderize_repository.dart';
 
 class GenderizeScreen extends StatefulWidget {
@@ -40,6 +42,15 @@ class _GenderizeScreenState extends State<GenderizeScreen> {
         ),
         child: ListView(
           children: [
+            Center(
+              child: Text(
+                "${context.read<Counter1Bloc>().state.counter}",
+                style: const TextStyle(
+                  fontSize: 100,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
             TextFormField(
               controller: _controller,
               decoration: const InputDecoration(
