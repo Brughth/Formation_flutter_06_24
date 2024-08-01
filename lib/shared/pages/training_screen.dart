@@ -3,6 +3,7 @@ import 'package:formation_flutter_join24/counter/presentation/counter1_screen.da
 import 'package:formation_flutter_join24/form/form_screen.dart';
 import 'package:formation_flutter_join24/genderize/presentation/genderize_screen.dart';
 import 'package:formation_flutter_join24/post/presentation/post_screen.dart';
+import 'package:formation_flutter_join24/post/presentation/post_screen_with_bloc.dart';
 
 import '../../bmi/presentation/bmi_screen.dart';
 import '../../counter/presentation/counter2_screen.dart';
@@ -166,6 +167,17 @@ class TrainingScreen extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => Counter2Screen(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("Post WIth Bloc"),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const PostScreenWithBloc(),
                   ),
                 );
               },

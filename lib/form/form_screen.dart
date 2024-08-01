@@ -17,7 +17,6 @@ class _FormScreenState extends State<FormScreen> {
   late FocusNode lastNameNode;
   late FocusNode emailNode;
 
-  GlobalKey _globalKey = GlobalKey();
   bool obscureText = true;
 
   @override
