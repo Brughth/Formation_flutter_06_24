@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "656919954465",
+    "project_id": "formationflutter-fe775",
+    "storage_bucket": "formationflutter-fe775.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656919954465:android:8d5d5728b43fa3ed2a4f60",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGA3MWSaLoRWadUExh2g3CaFOJakiduHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
