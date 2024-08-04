@@ -7,4 +7,12 @@ class Counter1State {
   const Counter1State({
     required this.counter,
   });
+
+  Counter1State copyWith({
+    int? counter,
+  }) {
+    return Counter1State(
+      counter: counter ?? this.counter,
+    );
+  }
 }

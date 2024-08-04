@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formation_flutter_join24/counter/logic/bloc/counter1_bloc.dart';
+import 'package:formation_flutter_join24/service_locator.dart';
 import 'package:gap/gap.dart';
 
 class Counter1Screen extends StatelessWidget {
@@ -56,7 +57,8 @@ class Counter1Screen extends StatelessWidget {
           FloatingActionButton.extended(
             heroTag: "increment",
             onPressed: () {
-              context.read<Counter1Bloc>().add(IncrementCounterEvent());
+              // context.read<Counter1Bloc>().add(IncrementCounterEvent());
+              getIt.get<Counter1Bloc>().add(IncrementCounterEvent());
             },
             label: const Text("Increment"),
             icon: const Icon(Icons.add),

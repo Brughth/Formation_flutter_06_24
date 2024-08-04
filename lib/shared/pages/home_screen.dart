@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:formation_flutter_join24/counter/logic/bloc/counter1_bloc.dart';
+import 'package:formation_flutter_join24/service_locator.dart';
 import 'package:formation_flutter_join24/shared/pages/stl.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,11 +25,16 @@ class HomeScreen extends StatelessWidget {
         //     color: Colors.white,
         //   ),
         // ),
-        actions: const [
-          Icon(
-            Icons.notification_add,
-            color: Colors.white,
-            size: 30,
+        actions: [
+          InkWell(
+            child: const Icon(
+              Icons.notification_add,
+              color: Colors.white,
+              size: 30,
+            ),
+            onTap: () {
+              getIt.get<Counter1Bloc>().add(IncrementCounterEvent());
+            },
           ),
           SizedBox(width: 20),
           CircleAvatar(
