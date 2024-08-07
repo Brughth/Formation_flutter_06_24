@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:formation_flutter_join24/auth/data/auth_service.dart';
+import 'package:formation_flutter_join24/auth/presentation/login_screen.dart';
+import 'package:formation_flutter_join24/shared/app_routes.dart';
 
 import 'package:formation_flutter_join24/shared/pages/training_screen.dart';
 
@@ -39,9 +42,12 @@ class _ApplicationScreenState extends State<ApplicationScreen> {
           ),
           Scaffold(
             body: Center(
-              child: Text(
-                "Profil",
-                style: Theme.of(context).textTheme.displayLarge,
+              child: IconButton(
+                onPressed: () {
+                  AuthService().logout();
+                  setRoot(context, const LoginScreen());
+                },
+                icon: const Icon(Icons.logout),
               ),
             ),
           )

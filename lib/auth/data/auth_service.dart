@@ -1,11 +1,14 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:formation_flutter_join24/auth/data/user_model.dart';
 
 class AuthService {
   final auth = FirebaseAuth.instance;
   final userRef = FirebaseFirestore.instance.collection("users");
 
-  register({
+  Future<UserModel> register({
     required String email,
     required String password,
     required String firstName,
@@ -21,6 +24,7 @@ class AuthService {
       "firstName": firstName,
       "lastName": lastName,
       "phoneNumber": phoneNumber,
+      "uid": credential.user!.uid,
     };
     return setUser(
       userId: credential.user!.uid,
@@ -28,7 +32,7 @@ class AuthService {
     );
   }
 
-  login({
+  Future<UserModel> login({
     required String email,
     required String password,
   }) async {
@@ -40,7 +44,16 @@ class AuthService {
     return getUser(credential.user!.uid);
   }
 
-  setUser({
+  Future<UserModel?> checkAuthState() async {
+    var currentUser = auth.currentUser;
+    if (currentUser == null) {
+      return null;
+    }
+
+    return await getUser(currentUser.uid);
+  }
+
+  Future<UserModel> setUser({
     required String userId,
     required Map<String, dynamic> data,
   }) async {
@@ -48,12 +61,13 @@ class AuthService {
     return getUser(userId);
   }
 
-  getUser(String id) async {
+  Future<UserModel> getUser(String id) async {
     var res = (await userRef.doc(id).get()).data() as Map<String, dynamic>;
-    res.addAll({
-      "id": id,
-    });
 
-    return UserInfo.fromJson(res);
+    return UserModel.fromJson(res);
+  }
+
+  logout() async {
+    await auth.signOut();
   }
 }

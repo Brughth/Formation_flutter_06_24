@@ -13,21 +13,9 @@ class UserModel {
     required this.phoneNumber,
   });
 
-  Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'id': id});
-    result.addAll({'email': email});
-    result.addAll({'firstName': firstName});
-    result.addAll({'lastName': lastName});
-    result.addAll({'phoneNumber': phoneNumber});
-
-    return result;
-  }
-
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: json['id'],
+      id: json['uid'],
       email: json['email'],
       firstName: json['firstName'],
       lastName: json['lastName'],

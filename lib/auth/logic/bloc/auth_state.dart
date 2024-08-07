@@ -28,3 +28,15 @@ final class RegisterSuccess extends AuthState {
   final UserModel user;
   RegisterSuccess({required this.user});
 }
+
+final class CheckAuthStateLoading extends AuthState {}
+
+final class CheckAuthStateFailure extends AuthState {
+  final String message;
+  CheckAuthStateFailure({required this.message});
+}
+
+final class CheckAuthStateSuccess extends AuthState {
+  final UserModel user;
+  CheckAuthStateSuccess({required this.user});
+}

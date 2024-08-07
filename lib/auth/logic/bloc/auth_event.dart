@@ -28,3 +28,5 @@ class LoginEvent extends AuthEvent {
     required this.password,
   });
 }
+
+final class CheckAuthStateEvent extends AuthEvent {}
