@@ -62,9 +62,13 @@ class AuthService {
   }
 
   Future<UserModel> getUser(String id) async {
-    var res = (await userRef.doc(id).get()).data() as Map<String, dynamic>;
+    var res = await userRef.doc(id).get();
 
-    return UserModel.fromJson(res);
+    var data = res.data();
+
+    print(data);
+
+    return UserModel.fromJson(data!);
   }
 
   logout() async {

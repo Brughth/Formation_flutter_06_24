@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:formation_flutter_join24/auth/data/auth_service.dart';
 import 'package:formation_flutter_join24/auth/presentation/login_screen.dart';
+import 'package:formation_flutter_join24/person/presentation/person_list_screen.dart';
 import 'package:formation_flutter_join24/shared/app_routes.dart';
 
 import 'package:formation_flutter_join24/shared/pages/training_screen.dart';
@@ -21,17 +22,7 @@ class _ApplicationScreenState extends State<ApplicationScreen> {
         index: activeIndex,
         children: [
           const TrainingScreen(),
-          Scaffold(
-            appBar: AppBar(
-              title: const Text("Search"),
-            ),
-            body: Center(
-              child: Text(
-                "Search",
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-            ),
-          ),
+          const PersonListScreen(),
           Scaffold(
             body: Center(
               child: Text(
@@ -68,8 +59,10 @@ class _ApplicationScreenState extends State<ApplicationScreen> {
             backgroundColor: Colors.black,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "Search",
+            icon: Icon(
+              Icons.person_add,
+            ),
+            label: "Staff",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
