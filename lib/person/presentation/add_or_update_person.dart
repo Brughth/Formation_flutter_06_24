@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:formation_flutter_join24/person/data/person_model.dart';
 import 'package:formation_flutter_join24/person/data/person_service.dart';
 import 'package:formation_flutter_join24/shared/widgets/app_snackbar.dart';
 import 'package:gap/gap.dart';
@@ -13,7 +14,11 @@ import '../../shared/widgets/app_button.dart';
 import '../../shared/widgets/app_input.dart';
 
 class AddOrUpdatePersonScreen extends StatefulWidget {
-  const AddOrUpdatePersonScreen({super.key});
+  final PersonModel? person;
+  const AddOrUpdatePersonScreen({
+    super.key,
+    this.person,
+  });
 
   @override
   State<AddOrUpdatePersonScreen> createState() =>
@@ -31,9 +36,9 @@ class _AddOrUpdatePersonScreenState extends State<AddOrUpdatePersonScreen> {
 
   @override
   void initState() {
-    emailController = TextEditingController();
-    nameController = TextEditingController();
-    phoneController = TextEditingController();
+    emailController = TextEditingController(text: widget.person?.email);
+    nameController = TextEditingController(text: widget.person?.name);
+    phoneController = TextEditingController(text: widget.person?.phone);
     super.initState();
   }
 
@@ -49,7 +54,7 @@ class _AddOrUpdatePersonScreenState extends State<AddOrUpdatePersonScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Person"),
+        title: Text("${widget.person != null ? 'Edit' : 'Add'} Person"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12),
@@ -72,7 +77,11 @@ class _AddOrUpdatePersonScreenState extends State<AddOrUpdatePersonScreen> {
                 },
                 child: CircleAvatar(
                   radius: 100,
-                  backgroundImage: image != null ? FileImage(image!) : null,
+                  backgroundImage: image != null
+                      ? FileImage(image!)
+                      : widget.person?.image != null
+                          ? NetworkImage(widget.person!.image!)
+                          : null,
                 ),
               ),
             ),
@@ -109,18 +118,18 @@ class _AddOrUpdatePersonScreenState extends State<AddOrUpdatePersonScreen> {
             ),
             const Gap(30),
             AppButton(
-              text: "Add",
+              text: widget.person != null ? "Edit" : "Add",
               loading: isLoading,
               bgColor: AppColors.primary,
               onPressed: () async {
                 try {
-                  if (image == null) {
-                    AppSnackBar.showError(
-                      message: "Selectionnez une image",
-                      context: context,
-                    );
-                    return;
-                  }
+                  // if (image == null) {
+                  //   AppSnackBar.showError(
+                  //     message: "Selectionnez une image",
+                  //     context: context,
+                  //   );
+                  //   return;
+                  // }
 
                   setState(() {
                     isLoading = true;
@@ -128,10 +137,14 @@ class _AddOrUpdatePersonScreenState extends State<AddOrUpdatePersonScreen> {
 
                   var service = PersonService();
 
-                  var imageUrl =
-                      await service.uploadFileToStorageAndReturnUrl(image!);
+                  var imageUrl;
 
-                  var id = const Uuid().v4();
+                  if (image != null) {
+                    imageUrl =
+                        await service.uploadFileToStorageAndReturnUrl(image!);
+                  }
+
+                  var id = widget.person?.id ?? const Uuid().v4();
 
                   var data = {
                     'id': id,
@@ -151,6 +164,7 @@ class _AddOrUpdatePersonScreenState extends State<AddOrUpdatePersonScreen> {
                   setState(() {
                     isLoading = false;
                   });
+                  Navigator.pop(context);
                 } catch (e) {
                   print(e);
                   setState(() {

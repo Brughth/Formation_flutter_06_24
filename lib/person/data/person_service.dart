@@ -15,6 +15,11 @@ class PersonService {
     return PersonModel.fromJson(data!);
   }
 
+  Future<String> deletePerson(String id) async {
+    await personsRef.doc(id).delete();
+    return id;
+  }
+
   Future<PersonModel> setPerson({
     required String id,
     required Map<String, dynamic> data,

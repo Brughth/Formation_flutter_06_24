@@ -6,6 +6,8 @@ import 'package:formation_flutter_join24/person/presentation/add_or_update_perso
 import 'package:formation_flutter_join24/shared/app_routes.dart';
 import 'package:formation_flutter_join24/shared/const.dart';
 
+import '../data/person_service.dart';
+
 class PersonListScreen extends StatefulWidget {
   const PersonListScreen({super.key});
 
@@ -77,6 +79,36 @@ class _PersonListScreenState extends State<PersonListScreen> {
                   ),
                   title: Text(person.name),
                   subtitle: Text(person.email),
+                  trailing: PopupMenuButton<int>(
+                    onSelected: (value) {},
+                    itemBuilder: (context) {
+                      return [
+                        PopupMenuItem(
+                          value: 1,
+                          child: const Text("Modifier"),
+                          onTap: () {
+                            navigateTo(
+                              context,
+                              AddOrUpdatePersonScreen(
+                                person: person,
+                              ),
+                            );
+                          },
+                        ),
+                        PopupMenuItem(
+                          value: 2,
+                          child: const Text("Supprimer"),
+                          onTap: () {
+                            try {
+                              PersonService().deletePerson(person.id);
+                            } catch (e) {
+                              print(e);
+                            }
+                          },
+                        ),
+                      ];
+                    },
+                  ),
                 );
               },
             );

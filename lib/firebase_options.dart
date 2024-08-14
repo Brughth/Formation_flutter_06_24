@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'formationflutter-fe775.appspot.com',
     measurementId: 'G-EVKPKWEPKW',
   );
+
 }

@@ -25,9 +25,14 @@ class _ApplicationScreenState extends State<ApplicationScreen> {
           const PersonListScreen(),
           Scaffold(
             body: Center(
-              child: Text(
-                "Like",
-                style: Theme.of(context).textTheme.displayLarge,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Like",
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
+                ],
               ),
             ),
           ),
