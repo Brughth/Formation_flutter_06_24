@@ -7,6 +7,7 @@ import 'package:formation_flutter_join24/app_init_screen.dart';
 import 'package:formation_flutter_join24/counter/logic/bloc/counter1_bloc.dart';
 import 'package:formation_flutter_join24/service_locator.dart';
 import 'package:formation_flutter_join24/shared/cubit/application_cubit.dart';
+import 'package:formation_flutter_join24/shared/router/app_routes.dart';
 
 import 'firebase_options.dart';
 
@@ -24,11 +25,13 @@ void main() async {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +53,14 @@ class MyApp extends StatelessWidget {
           create: (context) => getIt.get<ApplicationCubit>(),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
+        routerConfig: _appRouter.config(),
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const AppInitScreen(),
       ),
     );
   }
